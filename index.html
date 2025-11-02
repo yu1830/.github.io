@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社エクシードテック | 社員一人一人が成長できる環境</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', '游ゴシック', 'Yu Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FF6B35;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #FF6B35;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://s3-ap-northeast-1.amazonaws.com/thegate/2021/11/08/17/32/23/tokyo%20tower-night%20veiw.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-top: -70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        /* Company Info Section */
+        .company-info {
+            background: #0A2A40;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .company-info .section-title-small {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            text-align: left;
+        }
+
+        .company-info .main-copy {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
+
+        .company-info .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Technology Section */
+        .technology {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .technology h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .technology p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Office Section */
+        .office {
+            padding: 80px 0;
+            background: #F8F9FA;
+        }
+
+        .office h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .office-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .office-images img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card .title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #FF6B35;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .note {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Page Sections */
+        .page-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .page-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        /* Business Section */
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .business-card {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .business-card i {
+            font-size: 64px;
+            color: #FF6B35;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .business-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .business-card p {
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* Training Section */
+        .training-content {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #FFE5D9, #FFD1C1);
+        }
+
+        .training-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .training-content .subtitle {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .training-content .note {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .tab-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 15px 20px;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background: #FF6B35;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #FF6B35;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 80px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #FF6B35;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #FF6B35;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+        }
+
+        .timeline-item li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-item li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #FF6B35;
+        }
+
+        .timeline-item strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Company Details */
+        .company-details {
+            padding: 80px 0;
+            background: #F8F9FA;
+        }
+
+        .company-details h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .details-table {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .details-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .details-table td {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .details-table td:first-child {
+            background: #f8f9fa;
+            font-weight: 600;
+            width: 150px;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .team h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .team-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .team-feature {
+            margin-bottom: 30px;
+        }
+
+        .team-feature h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #FF6B35;
+        }
+
+        .team-feature p {
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2C3E50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            line-height: 1.8;
+            cursor: pointer;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #bbb;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                padding-top: 50px;
+                transition: 0.3s;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .company-info .main-copy {
+                font-size: 2rem;
+            }
+
+            .office-images {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-item::before {
+                left: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo" onclick="showPage('top')">株式会社エクシードテック</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a onclick="showPage('top')" class="active">トップ</a></li>
+                <li><a onclick="showPage('company')">会社情報</a></li>
+                <li><a onclick="showPage('business')">業務内容</a></li>
+                <li><a onclick="showPage('training')">研修プログラム</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Top Page -->
+    <div class="page active" id="top-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>社員1人1人が成長できる環境</h1>
+                    <p>多様な才能が交わり、無限の可能性を創造できる場所へ。<br>挑戦と成長を支える環境を通じて、<br>社員が自分らしく輝ける企業を目指します。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Info Section -->
+        <section class="company-info fade-in">
+            <div class="container">
+                <div class="section-title-small">会社情報</div>
+                <h2 class="main-copy">日本のITを、次の時代へ。<br>現場から、未来を創る。</h2>
+                <p class="description">
+                    エクシードテックは、「ITの枠を超えて、社会を変革する」というビジョンを掲げています。<br>
+                    テクノロジーを人と社会を成長させる原動力と捉え、<br>
+                    最新技術と人が中心となる未来を、スタートアップ企業として目指します。
+                </p>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section class="technology fade-in">
+            <div class="container">
+                <h2>テクノロジーで、未来を創る</h2>
+                <p>
+                    AI開発、アプリ開発、データサイエンスなど、<br>
+                    最先端の技術領域で一人ひとりの才能を引き出します。<br><br>
+                    未経験からでも安心の研修制度と、<br>
+                    経験豊富なメンターのサポートで、<br>
+                    次世代のエンジニアを育成しています。
+                </p>
+            </div>
+        </section>
+
+        <!-- Office Section -->
+        <section class="office fade-in">
+            <div class="container">
+                <h2>働きやすい環境</h2>
+                <div class="office-images">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/19bb5315ed72f63b146331fd910b9990" alt="明るく開放的な会議室">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/cb33fc1d457921f81665fef464f0ecec" alt="日本人の若手社員がノートパソコンを囲んで笑顔でミーティング">
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="title">未経験者比率</div>
+                        <div class="number">60<span style="font-size: 24px;">%</span></div>
+                        <div class="note">※2025年8月時点</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="title">経験者比率</div>
+                        <div class="number">40<span style="font-size: 24px;">%</span></div>
+                        <div class="note">※2025年8月時点</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="title">従業員数</div>
+                        <div class="number">60<span style="font-size: 24px;">名</span></div>
+                        <div class="note">※2025年8月時点</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>会社情報</h4>
+                        <p>株式会社エクシードテック</p>
+                        <p>〒107-0052<br>東京都港区赤坂3丁目11番15号<br>VORT赤坂見附4階</p>
+                        <p>TEL: 03-6811-0597</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>サイトマップ</h4>
+                        <p><a onclick="showPage('top')">トップ</a></p>
+                        <p><a onclick="showPage('company')">会社情報</a></p>
+                        <p><a onclick="showPage('business')">業務内容</a></p>
+                        <p><a onclick="showPage('training')">研修プログラム</a></p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 株式会社エクシードテック All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Company Page -->
+    <div class="page" id="company-page">
+        <section class="page-section">
+            <div class="container">
+                <h1>会社情報</h1>
+            </div>
+        </section>
+
+        <!-- Company Details Section -->
+        <section class="company-details fade-in">
+            <div class="container">
+                <h2>会社概要</h2>
+                <div class="details-table">
+                    <table>
+                        <tr>
+                            <td>会社名</td>
+                            <td>株式会社エクシードテック</td>
+                        </tr>
+                        <tr>
+                            <td>設立</td>
+                            <td>2025年3月</td>
+                        </tr>
+                        <tr>
+                            <td>資本金</td>
+                            <td>300万円</td>
+                        </tr>
+                        <tr>
+                            <td>従業員数</td>
+                            <td>60名(2025年8月現在)</td>
+                        </tr>
+                        <tr>
+                            <td>所在地</td>
+                            <td>〒107-0052 東京都港区赤坂3丁目11番15号 VORT赤坂見附4階</td>
+                        </tr>
+                        <tr>
+                            <td>電話番号</td>
+                            <td>03-6811-0597</td>
+                        </tr>
+                        <tr>
+                            <td>メール</td>
+                            <td>saiyo@exceed-tech.co.jp</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team fade-in">
+            <div class="container">
+                <h2>社内環境</h2>
+                <div class="team-content">
+                    <h3>明るく活気あふれる職場環境</h3>
+                    
+                    <div class="team-feature">
+                        <h4>充実したサポート体制</h4>
+                        <p>経験豊富な先輩社員がメンターとして丁寧にサポート。週1回の1on1ミーティングで、不安や疑問をすぐに解消できます。</p>
+                    </div>
+                    
+                    <div class="team-feature">
+                        <h4>チーム全体で成長を応援</h4>
+                        <p>定期的な勉強会や技術共有会を開催。経験年数に関係なく意見を出し合い、共に学び合う文化を大切にしています。</p>
+                    </div>
+                    
+                    <div class="team-feature">
+                        <h4>風通しの良いコミュニケーション</h4>
+                        <p>年齢や役職に関係なく、誰もが意見を出し合えるフラットな組織。月1回のランチミーティングで、プロジェクトの枠を超えた交流が生まれています。</p>
+                    </div>
+                    
+                    <div class="team-feature">
+                        <h4>ワークライフバランスの実現</h4>
+                        <p>フレックスタイム制度やリモートワークを導入。一人一人のライフスタイルに合わせた働き方が可能です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>会社情報</h4>
+                        <p>株式会社エクシードテック</p>
+                        <p>〒107-0052<br>東京都港区赤坂3丁目11番15号<br>VORT赤坂見附4階</p>
+                        <p>TEL: 03-6811-0597</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>サイトマップ</h4>
+                        <p><a onclick="showPage('top')">トップ</a></p>
+                        <p><a onclick="showPage('company')">会社情報</a></p>
+                        <p><a onclick="showPage('business')">業務内容</a></p>
+                        <p><a onclick="showPage('training')">研修プログラム</a></p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 株式会社エクシードテック All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Business Page -->
+    <div class="page" id="business-page">
+        <section class="page-section">
+            <div class="container">
+                <h1>業務内容</h1>
+                <div class="business-grid">
+                    <div class="business-card">
+                        <i class="fa-solid fa-brain"></i>
+                        <h3>AI開発</h3>
+                        <p>最先端のAI技術を活用したソリューション開発。<br>機械学習、ディープラーニングを駆使し、<br>ビジネス課題を解決します。</p>
+                    </div>
+                    <div class="business-card">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h3>アプリ開発</h3>
+                        <p>iOS/Android/Webアプリケーションの企画・設計・開発。<br>ユーザー体験を重視した高品質なアプリを提供します。</p>
+                    </div>
+                    <div class="business-card">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <h3>データサイエンティスト</h3>
+                        <p>ビッグデータの分析と可視化。<br>データから価値ある洞察を引き出し、<br>経営判断をサポートします。</p>
+                    </div>
+                    <div class="business-card">
+                        <i class="fa-solid fa-handshake"></i>
+                        <h3>営業職</h3>
+                        <p>お客様のニーズを深く理解し、<br>最適なITソリューションを提案。<br>信頼関係を築きながら、ビジネスを成功に導きます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>会社情報</h4>
+                        <p>株式会社エクシードテック</p>
+                        <p>〒107-0052<br>東京都港区赤坂3丁目11番15号<br>VORT赤坂見附4階</p>
+                        <p>TEL: 03-6811-0597</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>サイトマップ</h4>
+                        <p><a onclick="showPage('top')">トップ</a></p>
+                        <p><a onclick="showPage('company')">会社情報</a></p>
+                        <p><a onclick="showPage('business')">業務内容</a></p>
+                        <p><a onclick="showPage('training')">研修プログラム</a></p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 株式会社エクシードテック All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Training Page -->
+    <div class="page" id="training-page">
+        <section class="training-content">
+            <div class="container">
+                <h1>研修プログラム</h1>
+                <p class="subtitle">一人一人に合ったカリキュラムをご用意しています</p>
+                <p class="note">※下記はあくまで参考事例になります。</p>
+                
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" onclick="showTrainingTab('data-analysis')">データ分析コース</button>
+                        <button class="tab-button" onclick="showTrainingTab('development')">開発エンジニアコース</button>
+                    </div>
+                    
+                    <div id="data-analysis" class="tab-content active">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>① 基礎スキル習得</h4>
+                                <ul>
+                                    <li><strong>OS操作</strong><br>Windowsの基本操作、フォルダ管理、ショートカットキーの活用</li>
+                                    <li><strong>タイピング</strong><br>ブラインドタッチの習得、タイピング速度向上トレーニング</li>
+                                    <li><strong>学習基礎</strong><br>統計や情報整理の基礎を学び、効率的に知識を吸収できる土台を作ります</li>
+                                    <li><strong>Officeソフト</strong><br>Word(文書作成)、Excel(表計算・関数)、PowerPoint(資料作成)の基本操作</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>② 分析スキル向上</h4>
+                                <ul>
+                                    <li><strong>データ分析・集計の手法</strong><br>データを整理・可視化し、業務に活かせる分析スキルを習得します</li>
+                                    <li><strong>複雑なデータを見やすく整理</strong><br>納得感のある説明ができる力を養います</li>
+                                    <li><strong>プレゼンテーションの仕方</strong><br>聞き手に響く構成と話し方を身につけ、説得力ある発表を行うスキルを習得</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>③ 実践スキル</h4>
+                                <ul>
+                                    <li><strong>プログラミング(Python)</strong><br>Pythonでのデータ処理や分析に必要な基本から応用までを学びます</li>
+                                    <li><strong>分析結果をわかりやすく伝える</strong><br>資料の作り方・話し方を実践的に習得</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="development" class="tab-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>① 基礎スキル習得</h4>
+                                <ul>
+                                    <li><strong>OS操作</strong><br>Windowsの基本操作、フォルダ管理、ショートカットキーの活用</li>
+                                    <li><strong>タイピング</strong><br>ブラインドタッチの習得、タイピング速度向上トレーニング</li>
+                                    <li><strong>Officeソフト</strong><br>Word(文書作成)、Excel(表計算・関数)、PowerPoint(資料作成)の基本操作</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>② プログラミング基礎</h4>
+                                <ul>
+                                    <li><strong>Java研修</strong><br>オブジェクト指向プログラミングの基礎、変数・制御構文・クラス設計を学び、Javaによる開発の土台を構築します</li>
+                                    <li><strong>Python研修</strong><br>データ処理やWeb開発で広く使われるPythonの基本文法、ライブラリの活用方法を習得します</li>
+                                    <li><strong>HTML/CSS研修</strong><br>Webページの構造とデザインを学び、レスポンシブデザインの基礎を身につけます</li>
+                                    <li><strong>PHP研修</strong><br>サーバーサイドプログラミングの基礎、データベース連携、動的Webサイトの構築方法を学びます</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>③ 実装・開発実践</h4>
+                                <ul>
+                                    <li><strong>実践的なシステム開発</strong><br>学んだ言語を組み合わせて、実際のWebアプリケーション開発に挑戦します</li>
+                                    <li><strong>チーム開発演習</strong><br>GitやGitHubを使ったバージョン管理、アジャイル開発手法を実践的に学びます</li>
+                                    <li><strong>コードレビューとリファクタリング</strong><br>先輩エンジニアからのフィードバックを受けながら、保守性の高いコードを書く技術を習得します</li>
+                                    <li><strong>本番環境へのデプロイ</strong><br>開発環境から本番環境への移行、サーバー設定、運用保守の基礎を学びます</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>会社情報</h4>
+                        <p>株式会社エクシードテック</p>
+                        <p>〒107-0052<br>東京都港区赤坂3丁目11番15号<br>VORT赤坂見附4階</p>
+                        <p>TEL: 03-6811-0597</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>サイトマップ</h4>
+                        <p><a onclick="showPage('top')">トップ</a></p>
+                        <p><a onclick="showPage('company')">会社情報</a></p>
+                        <p><a onclick="showPage('business')">業務内容</a></p>
+                        <p><a onclick="showPage('training')">研修プログラム</a></p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 株式会社エクシードテック All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Page navigation
+        function showPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => {
+                p.classList.remove('active');
+            });
+
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(page + '-page').classList.add('active');
+
+            // Add active class to current nav link
+            event.target.classList.add('active');
+
+            // Close mobile menu
+            navMenu.classList.remove('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Training tab functionality
+        function showTrainingTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Close menu when clicking on nav links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDn1tzaM%2FIVjiR9n9Zhl8YhtfDQFQc9Eh3oZOklLYMy1fbizmRUI9%2BqW5fSr9mQ2K8t9epGfGYIChqwGG6B4Tl2%2Bsb4PamCAmZ52ufHJCE2ZjrtyVIyzm3wrBI6i9zy%2BkJ1S5LX%2F6HWH4bR5U5yjihIsoi0sbL%2B9suYLkD%2BgUfEgWNkX16F5oleiuifh7lPYS5w52RoJM732fhlII58yaakLNGBEoezg17J1PHI2Vw1g2FXmD0YbMl6Z%2Fgd1qTx3Z78U63K7j319uuVVuNYBSxduidWM%2BM6lkg9iKyA2aVxDBank9r7fXOuNchrFOI89%2BLJk7qIcssVL1NLMzRkXOC%2BnX%2B3kqIHDs3DfolUoxiJ51NhzSZyepMY6xhiHQiCyeD22egWsa%2FVbIPrEM3ZViq1lxq0tWxj4uAM4Zf%2Blgd2F4UuDoTbp4iyhVIBDY5x9QabwuMD7H%2F18sCCc1N%2FSRZiU%2BywVXrJF16EhdCLnLb6TEXZniFqIRmH0Avh2aiztXKmUpVKlz2kR31EgkRe7%2FHgA%3D";
+        window.__genspark_locale = "ja-JP";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDn1tzaM/IVjiR9n9Zhl8YhtfDQFQc9Eh3oZOklLYMy1fbizmRUI9+qW5fSr9mQ2K8t9epGfGYIChqwGG6B4Tl2+sb4PamCAmZ52ufHJCE2ZjrtyVIyzm3wrBI6i9zy+kJ1S5LX/6HWH4bR5U5yjihIsoi0sbL+9suYLkD+gUfEgWNkX16F5oleiuifh7lPYS5w52RoJM732fhlII58yaakLNGBEoezg17J1PHI2Vw1g2FXmD0YbMl6Z/gd1qTx3Z78U63K7j319uuVVuNYBSxduidWM+M6lkg9iKyA2aVxDBank9r7fXOuNchrFOI89+LJk7qIcssVL1NLMzRkXOC+nX+3kqIHDs3DfolUoxiJ51NhzSZyepMY6xhiHQiCyeD22egWsa/VbIPrEM3ZViq1lxq0tWxj4uAM4Zf+lgd2F4UuDoTbp4iyhVIBDY5x9QabwuMD7H/18sCCc1N/SRZiU+ywVXrJF16EhdCLnLb6TEXZniFqIRmH0Avh2aiztXKmUpVKlz2kR31EgkRe7/HgA=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
